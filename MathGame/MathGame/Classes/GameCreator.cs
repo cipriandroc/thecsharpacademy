@@ -25,23 +25,33 @@ namespace MathGame.Classes
             var choices = new Choices(choiceDict);
             int choiceResult = choices.GetSelection();
 
-            string resultFunction = MapResultToFunctionName(choiceDict, choiceResult);
+            string resultFunction = MapChoiceToFunctionName(choiceDict, choiceResult);
             Console.WriteLine($"Your selection is {choiceResult}");
-            Console.WriteLine($"Your selections performs a [{resultFunction}] function.");
+            Console.WriteLine($"Your selection performs a [{resultFunction}] function.");
 
             Console.WriteLine("Please enter your first number below:");
             int firstNumber = ParseInputToInt.ParseLineToInt();
-            Console.WriteLine($"Your first number is: {firstNumber}");
 
             Console.WriteLine("Please enter your second number below:");
             int secondNumber = ParseInputToInt.ParseLineToInt();
-            Console.WriteLine($"Your second number is: {secondNumber}");
 
-            Console.WriteLine($"See below result for {firstNumber} [{resultFunction}] {secondNumber}");
-
+            Console.WriteLine($"What is {firstNumber} {resultFunction} {secondNumber}?");
+            int userResult = ParseInputToInt.ParseLineToInt();
             int result = _calculationMethods[resultFunction](firstNumber, secondNumber);
 
-            Console.WriteLine($"The result is: {result}");
+            bool userSuccess = false;
+
+            if (userResult == result)
+            {
+                Console.WriteLine("You got it right!");
+                userSuccess = true;
+            }
+            else
+            {
+                Console.WriteLine("You did not get it right!");
+            }
+
+            Console.WriteLine($"{firstNumber} [{resultFunction}] {secondNumber} = {result}");
         }
         private IDictionary<string, CalculationMethod> CalculationMethods()
         {
@@ -65,7 +75,7 @@ namespace MathGame.Classes
 
             return dict;
         }
-        private string MapResultToFunctionName(IDictionary<int, string> choicesDict,int result)
+        private string MapChoiceToFunctionName(IDictionary<int, string> choicesDict,int result)
         {
 
             if (!choicesDict.ContainsKey(result)) 

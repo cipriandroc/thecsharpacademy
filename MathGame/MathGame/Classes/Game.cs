@@ -11,7 +11,6 @@ namespace MathGame.Classes
     {
         public Game() { }
         public void StartGame() { }
-
         public int Add(int x, int y)
         {
             return x + y;
