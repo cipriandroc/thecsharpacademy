@@ -10,18 +10,22 @@ namespace MathGame.Classes
 {
     public class Choices
     {
-        private readonly IDictionary<int, string> _choiceDict;
-        private readonly List<int> _keyList;
-        public Choices(IDictionary<int, string> choiceDict)
+        private readonly IDictionary<string, CalculationMethodInfo>  _choiceDict;
+        private readonly List<int> _keyList = new List<int>();
+        public Choices(IDictionary<string, CalculationMethodInfo> choiceDict)
         {
             _choiceDict = choiceDict;
-            _keyList = new List<int>(choiceDict.Keys);
+
+            foreach (var item in choiceDict.Values)
+            {
+                _keyList.Add(item.Counter);
+            }
         }
         public int GetSelection()
         {
             foreach (var item in _choiceDict)
             {
-                Console.WriteLine($"{item.Key}) {item.Value}");
+                Console.WriteLine($"{item.Value.Counter}) {item.Value.Name}");
             }
 
             Console.WriteLine("Make your selection:");
