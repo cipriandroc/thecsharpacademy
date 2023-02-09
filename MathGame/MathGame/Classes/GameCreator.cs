@@ -23,10 +23,10 @@ namespace MathGame.Classes
             var choiceDict = CalcFunctDict(_calculationMethods);
 
             var choices = new Choices(choiceDict);
-            int result = choices.GetSelection();
+            int choiceResult = choices.GetSelection();
 
-            string resultFunction = MapResultToFunctionName(choiceDict, result);
-            Console.WriteLine($"Your selection is {result}");
+            string resultFunction = MapResultToFunctionName(choiceDict, choiceResult);
+            Console.WriteLine($"Your selection is {choiceResult}");
             Console.WriteLine($"Your selections performs a [{resultFunction}] function.");
 
             Console.WriteLine("Please enter your first number below:");
@@ -37,9 +37,11 @@ namespace MathGame.Classes
             int secondNumber = ParseInputToInt.ParseLineToInt();
             Console.WriteLine($"Your second number is: {secondNumber}");
 
+            Console.WriteLine($"See below result for {firstNumber} [{resultFunction}] {secondNumber}");
 
+            int result = _calculationMethods[resultFunction](firstNumber, secondNumber);
 
-            _calculationMethods[resultFunction](5, 6);
+            Console.WriteLine($"The result is: {result}");
         }
         private IDictionary<string, CalculationMethod> CalculationMethods()
         {
