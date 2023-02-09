@@ -31,7 +31,7 @@ namespace MathGame.Classes
 
             string resultFunction = MapChoiceToFunctionName(choiceDict, choiceResult);
             Console.WriteLine($"Your selection is {choiceResult}");
-            Console.WriteLine($"Your selection performs a [{_calculationMethods[resultFunction].Name}] function.");
+            Console.WriteLine($"Your selection performs a [{_calculationMethods[resultFunction].Name}({_calculationMethods[resultFunction].OperationSign})] function.");
 
             Console.WriteLine("Please enter your first number below:");
             int firstNumber = ParseInputToInt.ParseLineToInt();
@@ -39,7 +39,7 @@ namespace MathGame.Classes
             Console.WriteLine("Please enter your second number below:");
             int secondNumber = ParseInputToInt.ParseLineToInt();
 
-            Console.WriteLine($"What is {firstNumber} {resultFunction} {secondNumber}?");
+            Console.WriteLine($"What is {firstNumber} {_calculationMethods[resultFunction].OperationSign} {secondNumber}?");
             int userResult = ParseInputToInt.ParseLineToInt();
             int result = _calculationMethods[resultFunction].Method(firstNumber, secondNumber);
 
@@ -53,7 +53,7 @@ namespace MathGame.Classes
                 Console.WriteLine("You did not get it right!");
             }
 
-            Console.WriteLine($"{firstNumber} [{resultFunction}] {secondNumber} = {result}");
+            Console.WriteLine($"{firstNumber} {_calculationMethods[resultFunction].OperationSign} {secondNumber} = {result}");
         }
         private IDictionary<string, CalculationMethodInfo> CalculationMethods()
         {
