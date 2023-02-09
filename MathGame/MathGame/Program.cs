@@ -6,8 +6,8 @@ namespace MathGame
     {
         static void Main(string[] args)
         {
-            Game game = new Game();
 
+            GameCreator game = new GameCreator();
             game.StartGame();
         }
     }
