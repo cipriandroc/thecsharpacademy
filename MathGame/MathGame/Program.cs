@@ -9,6 +9,10 @@ namespace MathGame
 
             GameCreator game = new GameCreator();
             game.StartGame();
+
+            bool userWon = game.userSuccess;
+
+            Console.WriteLine($"game won? {userWon}");
         }
     }
 }

@@ -22,15 +22,13 @@ namespace MathGame.Classes
         public new void StartGame()
         {
             Console.WriteLine("You have started the game");
-            Console.WriteLine("Please make your selection");
+            CalculationMethodInfo selectedCalculationMethod = OperationSelection();
 
-            var choices = new Choices(_calculationMethods);
-            int choiceResult = choices.GetSelection();
+            PerformOperationGame(selectedCalculationMethod);
+        }
 
-            CalculationMethodInfo selectedCalculationMethod = MapChoiceToCalculationMethod(_calculationMethods, choiceResult);
-            Console.WriteLine($"Your selection is {choiceResult}");
-            Console.WriteLine($"Your selection performs a [{selectedCalculationMethod.Name}({selectedCalculationMethod.OperationSign})] function.");
-
+        private void PerformOperationGame(CalculationMethodInfo selectedCalculationMethod)
+        {
             Console.WriteLine("Please enter your first number below:");
             int firstNumber = ParseInputToInt.ParseLineToInt();
 
@@ -53,6 +51,20 @@ namespace MathGame.Classes
 
             Console.WriteLine($"{firstNumber} {selectedCalculationMethod.OperationSign} {secondNumber} = {result}");
         }
+
+        private CalculationMethodInfo OperationSelection()
+        {
+            Console.WriteLine("Please make your selection");
+
+            var choices = new Choices(_calculationMethods);
+            int choiceResult = choices.GetSelection();
+
+            CalculationMethodInfo selectedCalculationMethod = MapChoiceToCalculationMethod(_calculationMethods, choiceResult);
+            Console.WriteLine($"Your selection is {choiceResult}");
+            Console.WriteLine($"Your selection performs a [{selectedCalculationMethod.Name}({selectedCalculationMethod.OperationSign})] function.");
+            return selectedCalculationMethod;
+        }
+
         private IDictionary<string, CalculationMethodInfo> CalculationMethods()
         {
             return new Dictionary<string, CalculationMethodInfo>
