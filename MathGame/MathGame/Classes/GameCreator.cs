@@ -24,14 +24,12 @@ namespace MathGame.Classes
             Console.WriteLine("You have started the game");
             Console.WriteLine("Please make your selection");
 
-            var choiceDict = CalcFunctDict(_calculationMethods);
-
             var choices = new Choices(_calculationMethods);
             int choiceResult = choices.GetSelection();
 
-            string resultFunction = MapChoiceToFunctionName(choiceDict, choiceResult);
+            CalculationMethodInfo selectedCalculationMethod = MapChoiceToCalculationMethod(_calculationMethods, choiceResult);
             Console.WriteLine($"Your selection is {choiceResult}");
-            Console.WriteLine($"Your selection performs a [{_calculationMethods[resultFunction].Name}({_calculationMethods[resultFunction].OperationSign})] function.");
+            Console.WriteLine($"Your selection performs a [{selectedCalculationMethod.Name}({selectedCalculationMethod.OperationSign})] function.");
 
             Console.WriteLine("Please enter your first number below:");
             int firstNumber = ParseInputToInt.ParseLineToInt();
@@ -39,9 +37,9 @@ namespace MathGame.Classes
             Console.WriteLine("Please enter your second number below:");
             int secondNumber = ParseInputToInt.ParseLineToInt();
 
-            Console.WriteLine($"What is {firstNumber} {_calculationMethods[resultFunction].OperationSign} {secondNumber}?");
+            Console.WriteLine($"What is {firstNumber} {selectedCalculationMethod.OperationSign} {secondNumber}?");
             int userResult = ParseInputToInt.ParseLineToInt();
-            int result = _calculationMethods[resultFunction].Method(firstNumber, secondNumber);
+            int result = selectedCalculationMethod.Method(firstNumber, secondNumber);
 
             if (userResult == result)
             {
@@ -53,7 +51,7 @@ namespace MathGame.Classes
                 Console.WriteLine("You did not get it right!");
             }
 
-            Console.WriteLine($"{firstNumber} {_calculationMethods[resultFunction].OperationSign} {secondNumber} = {result}");
+            Console.WriteLine($"{firstNumber} {selectedCalculationMethod.OperationSign} {secondNumber} = {result}");
         }
         private IDictionary<string, CalculationMethodInfo> CalculationMethods()
         {
@@ -65,29 +63,19 @@ namespace MathGame.Classes
                 {"Divide", new CalculationMethodInfo(4,"Divide","/", Divide)},
             };
         }
-        private IDictionary<int, string> CalcFunctDict(IDictionary<string, CalculationMethodInfo> calculationMethods)
+        private CalculationMethodInfo MapChoiceToCalculationMethod(IDictionary<string, CalculationMethodInfo> calculationMethods, int result)
         {
-
-            IDictionary<int, string> dict = new Dictionary<int, string>();
-
+           
             foreach (var item in calculationMethods)
             {
-                dict.Add(item.Value.Counter, item.Value.Name);
+                if (item.Value.Counter == result) 
+                { 
+                    return item.Value;
+                }
             }
 
-            return dict;
-        }
-        private string MapChoiceToFunctionName(IDictionary<int, string> choicesDict, int result)
-        {
+            throw new Exception("No valid operation has been selected");
 
-            if (!choicesDict.ContainsKey(result))
-            {
-                throw new Exception("not a valid selection");
-            }
-
-            string myValue = choicesDict[result];
-
-            return myValue;
         }
         public int GetUserResult()
         {
