@@ -2,8 +2,7 @@
 {
     public interface IGameCreator
     {
-        bool userSuccess { get; set; }
-        int GetUserResult();
+        int userScore { get; set; }
         void StartGame();
     }
 }

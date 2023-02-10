@@ -10,14 +10,14 @@ namespace MathGame.Classes
 {
     public class GameCreator : Game, IGameCreator
     {
-        public bool userSuccess { get; set; }
+        public int userScore {get; set;}
 
         private delegate int CalculationMethod(int x, int y);
         private readonly IDictionary<string, CalculationMethodInfo> _calculationMethods;
         public GameCreator()
         {
             _calculationMethods = CalculationMethods();
-            userSuccess = false;
+            userScore = 0;
         }
         public new void StartGame()
         {
@@ -42,7 +42,7 @@ namespace MathGame.Classes
             if (userResult == result)
             {
                 Console.WriteLine("You got it right!");
-                userSuccess = true;
+                userScore += 1;
             }
             else
             {
@@ -60,8 +60,7 @@ namespace MathGame.Classes
             int choiceResult = choices.GetSelection();
 
             CalculationMethodInfo selectedCalculationMethod = MapChoiceToCalculationMethod(_calculationMethods, choiceResult);
-            Console.WriteLine($"Your selection is {choiceResult}");
-            Console.WriteLine($"Your selection performs a [{selectedCalculationMethod.Name}({selectedCalculationMethod.OperationSign})] function.");
+            Console.WriteLine($"You selected the [{selectedCalculationMethod.Name}({selectedCalculationMethod.OperationSign})] operation.");
             return selectedCalculationMethod;
         }
 
@@ -89,14 +88,6 @@ namespace MathGame.Classes
             throw new Exception("No valid operation has been selected");
 
         }
-        public int GetUserResult()
-        {
-            if (userSuccess)
-            {
-                return 1;
-            }
 
-            return 0;
-        }
     }
 }
