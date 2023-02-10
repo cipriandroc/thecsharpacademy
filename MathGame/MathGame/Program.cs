@@ -11,6 +11,8 @@ namespace MathGame
             game.StartGame();
 
             Console.WriteLine($"Your score is: {game.userScore}");
+
+            Console.WriteLine("Play again?");
         }
     }
 }
