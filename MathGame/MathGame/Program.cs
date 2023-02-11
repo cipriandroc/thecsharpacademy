@@ -1,4 +1,5 @@
 ﻿using MathGame.Classes;
+using MathGame.Functions;
 
 namespace MathGame
 {
@@ -6,13 +7,9 @@ namespace MathGame
     {
         static void Main(string[] args)
         {
-
             GameCreator game = new GameCreator();
-            game.StartGame();
-
-            Console.WriteLine($"Your score is: {game.userScore}");
-
-            Console.WriteLine("Play again?");
+            PlayGameLoop gameLoop = new PlayGameLoop();
+            gameLoop.Start(game);
         }
     }
 }
