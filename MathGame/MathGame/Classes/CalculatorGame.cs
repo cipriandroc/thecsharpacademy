@@ -56,7 +56,7 @@ namespace MathGame.Classes
         {
             Console.WriteLine("Please make your selection");
 
-            var choices = new Choices(_calculationMethods);
+            var choices = new OperationCoices(_calculationMethods);
             int choiceResult = choices.GetSelection();
 
             CalculationMethodInfo selectedCalculationMethod = MapChoiceToCalculationMethod(_calculationMethods, choiceResult);
