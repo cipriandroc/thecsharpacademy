@@ -10,7 +10,6 @@ namespace MathGame.Classes
     public class Calculator : IGame
     {
         public Calculator() { }
-        public void StartGame() { }
         public int Add(int x, int y)
         {
             return x + y;
