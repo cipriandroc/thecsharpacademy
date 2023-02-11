@@ -29,10 +29,10 @@ namespace MathGame.Classes
 
         private void PerformOperationGame(CalculationMethodInfo selectedCalculationMethod)
         {
-            Console.WriteLine("Please enter your first number below:");
+            Console.WriteLine("Perform operation below, input a number and press return");
             int firstNumber = ParseInputToInt.ParseLineToInt();
 
-            Console.WriteLine("Please enter your second number below:");
+            Console.Write(selectedCalculationMethod.OperationSign);
             int secondNumber = ParseInputToInt.ParseLineToInt();
 
             Console.WriteLine($"What is {firstNumber} {selectedCalculationMethod.OperationSign} {secondNumber}?");
