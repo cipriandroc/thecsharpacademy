@@ -8,11 +8,11 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace MathGame.Functions
 {
-    public class Choices
+    public class OperationCoices
     {
         private readonly IDictionary<string, CalculationMethodInfo> _choiceDict;
         private readonly List<int> _keyList = new List<int>();
-        public Choices(IDictionary<string, CalculationMethodInfo> choiceDict)
+        public OperationCoices(IDictionary<string, CalculationMethodInfo> choiceDict)
         {
             _choiceDict = choiceDict;
 
