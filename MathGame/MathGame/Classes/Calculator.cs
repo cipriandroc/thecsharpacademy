@@ -7,9 +7,9 @@ using MathGame.Interfaces;
 
 namespace MathGame.Classes
 {
-    public class Game : IGame
+    public class Calculator : IGame
     {
-        public Game() { }
+        public Calculator() { }
         public void StartGame() { }
         public int Add(int x, int y)
         {

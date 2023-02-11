@@ -7,7 +7,7 @@ namespace MathGame
     {
         static void Main(string[] args)
         {
-            GameCreator game = new GameCreator();
+            CalculatorGame game = new CalculatorGame();
             PlayGameLoop gameLoop = new PlayGameLoop();
             gameLoop.Start(game);
         }

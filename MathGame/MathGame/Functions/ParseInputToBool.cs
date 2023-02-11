@@ -28,7 +28,7 @@ namespace MathGame.Functions
 
                 var key = Console.ReadKey();
 
-                if ( char.IsLetter(key.KeyChar) && valuesDict.ContainsKey(key.KeyChar.ToString()) )
+                if (valuesDict.ContainsKey(key.KeyChar.ToString()) )
                 {
                     Console.WriteLine();
                     return valuesDict[key.KeyChar.ToString()];

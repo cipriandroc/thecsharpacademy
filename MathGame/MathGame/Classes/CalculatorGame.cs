@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace MathGame.Classes
 {
-    public class GameCreator : Game, IGameCreator
+    public class CalculatorGame : Calculator, IGameCreator
     {
         public int userScore {get; set;}
 
         private delegate int CalculationMethod(int x, int y);
         private readonly IDictionary<string, CalculationMethodInfo> _calculationMethods;
-        public GameCreator()
+        public CalculatorGame()
         {
             _calculationMethods = CalculationMethods();
             userScore = 0;

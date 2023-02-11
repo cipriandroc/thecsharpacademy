@@ -11,7 +11,7 @@ namespace MathGame.Classes
     public class PlayGameLoop
     {
 
-        public void Start(GameCreator game)
+        public void Start(CalculatorGame game)
         {
             bool playGame = false;
 
