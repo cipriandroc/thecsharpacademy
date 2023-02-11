@@ -1,4 +1,4 @@
-﻿using MathGame.Functions;
+﻿using MathGame.Classes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,11 +6,11 @@ using System.Text;
 using System.Threading.Tasks;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
-namespace MathGame.Classes
+namespace MathGame.Functions
 {
     public class Choices
     {
-        private readonly IDictionary<string, CalculationMethodInfo>  _choiceDict;
+        private readonly IDictionary<string, CalculationMethodInfo> _choiceDict;
         private readonly List<int> _keyList = new List<int>();
         public Choices(IDictionary<string, CalculationMethodInfo> choiceDict)
         {
